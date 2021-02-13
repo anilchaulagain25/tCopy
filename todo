@@ -1,0 +1,12 @@
+1. santizie input and body, add validation
+2. impact actual user
+3. redirect or do something while not user is present
+4. hash pws and created time
+5. connect to ui
+6. uniform response type
+7. error page
+8. design stuffs
+9. copy the text functionlity
+10. display page
+11. user store
+12. oAuth for other types

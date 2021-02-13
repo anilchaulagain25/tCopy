@@ -1,0 +1,122 @@
+<main role="main" id="user-index">
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12" data-bind="if:parseInt(Clipboards().length) > 0">
+          <button
+            type="button"
+            onclick="window.location.href='/create'"
+            class="btn btn-primary float-right"
+          >
+            <i class="fas fa-plus-square"></i> Add new
+          </button>
+        </div>
+      </div>
+      <hr />
+
+      <div class="row" data-bind="if:parseInt(Clipboards().length) === 0">
+        <div class="col-12">
+          <div class="center">
+            <p class="mx-auto d-block">
+              It looks like you have not created any clips yet, Please click add
+              new button to make your texts multidevice.
+            </p>
+          </div>
+          <button
+            type="button"
+            onclick="window.location.href='/create'"
+            class="btn btn-primary mx-auto d-block"
+          >
+            <i class="fas fa-plus-square"></i> Add new
+          </button>
+        </div>
+      </div>
+
+      <div class="row" data-bind="foreach:Clipboards">
+        <div class="col-md-12">
+          <div class="card mb-4 box-shadow">
+            <div class="card-body">
+              <!-- ko if: $data.IsEncrypted -->
+              <p class="text-success">
+                Secure content, please click view to see your secure text
+                <span class="badge badge-success" style="float: right"
+                  >Encrypted</span
+                >
+              </p>
+              <!-- /ko -->
+              <!-- ko if: !$data.IsEncrypted -->
+              <p class="card-text" data-bind="text: $data.PlainTextShort"></p>
+              <!-- /ko -->
+
+              <hr />
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    data-bind="click: function(){toUpdatePage($data._id)} "
+                  >
+                    View
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-outline-secondary"
+                    data-bind="click: function(){copyToClipboard($data.PlainText)}, disable : $data.IsEncrypted "
+                  >
+                    Copy
+                  </button>
+                </div>
+                <small class="text-muted" data-bind="text: $data.Ago"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li
+                class="page-item"
+                data-bind="css:{disabled:(parseInt(Page()) === 1)}"
+              >
+                <a
+                  class="page-link"
+                  data-bind="attr:{href:'/?page='+(Page()-1)}"
+                  >Previous</a
+                >
+              </li>
+              <!--ko foreach : new Array(parseInt(Pages()))-->
+              <li
+                class="page-item"
+                data-bind="css:{disabled:(parseInt($index()+1)===parseInt(Page()))}"
+              >
+                <a
+                  class="page-link"
+                  data-bind="text:$index()+1,attr:{href:'/?page='+($index()+1)}"
+                ></a>
+              </li>
+              <!--/ko-->
+              <li
+                class="page-item"
+                data-bind="css:{disabled:(parseInt(Pages())===parseInt(Page()))}"
+              >
+                <a
+                  class="page-link"
+                  data-bind="attr:{href:'/?page='+(Page()+1)}"
+                  >Next</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="text/javascript">
+  window.Response = <%-JSON.stringify(data)%>
+</script>
+
+<script src="/javascripts/clipboard-index.js"></script>

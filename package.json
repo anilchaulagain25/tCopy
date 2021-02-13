@@ -1,0 +1,25 @@
+{
+  "name": "tcopy",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "crypto": "^1.0.1",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.1",
+    "http-errors": "~1.6.3",
+    "mongodb": "^3.6.4",
+    "morgan": "~1.9.1",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-twitter": "^1.0.4",
+    "sha1": "^1.1.1"
+  }
+}

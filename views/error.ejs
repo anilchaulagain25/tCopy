@@ -1,0 +1,44 @@
+<%if (error.env === "development") { %>
+
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">
+        <%= error.message %> (Status : <%= error.status %>)
+      </h1>
+      <p class="lead text-muted">
+       <pre><%= error.stack %></pre>
+      </p>
+      <p>
+        <a href="/" class="btn btn-primary my-2">
+          Goto Home <i class="far fa-play-circle"></i
+        ></a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<% } %> <% if (error.env !== "development")  { %>
+
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading">Something went wrong</h1>
+      <p class="lead text-muted">
+        We have faced some error, while processing your request. Please try
+        <a href="/">refreshing</a> the page,
+        <a href="/auth/logout">logout</a> or force refresh again. we are sorry
+        for it.
+      </p>
+      <p>
+        <a href="/" class="btn btn-primary my-2">
+          Goto Home <i class="far fa-play-circle"></i
+        ></a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<% } %>
+
+<hr />

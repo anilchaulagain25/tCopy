@@ -1,0 +1,76 @@
+<main role="main" id="user-create">
+  <br />
+  <br />
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <form action="javascript:submitForm();">
+        <br />
+        <h4>
+          Create your content :
+          <span
+            style="font-size: 0.5em"
+            class="badge badge-success"
+            data-bind="if:$root.Master().IsEncrypted()"
+            >Encrypted</span
+          >
+        </h4>
+
+        <hr />
+        <br />
+        <div class="summernote"></div>
+        <br />
+        <div
+          class="form-group"
+          data-bind="style : { display : $root.Master().IsEncrypted() ? 'block' : 'none' }"
+        >
+          <label for="exampleInputPassword1">Secret Key</label>
+          <input
+            type="text"
+            data-bind="attr: {required: $root.Master().IsEncrypted()}, value : $root.Master().Password"
+            class="form-control"
+            placeholder="Enter secret key here..."
+          />
+        </div>
+        <div class="form-check">
+          <input
+            type="checkbox"
+            data-bind="checked: $root.Master().IsEncrypted"
+            class="form-check-input"
+          />
+          <label
+            title="Once you encrypt your content, you need to use password to save and fetch your content."
+            class="form-check-label"
+            for="exampleCheck1"
+          >
+            Encrypt/protect text
+            <span class="text-success"
+              >(<i class="fas fa-lock"></i>)</span
+            ></label
+          >
+        </div>
+        <br />
+        <hr />
+
+        <!-- ko if: $root.Master().IsEncrypted() -->
+        <button type="submit" class="btn btn-success">
+          <i class="fas fa-lock"></i> Save
+        </button>
+        <!-- /ko -->
+        <!-- ko if: !$root.Master().IsEncrypted() -->
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save"></i> Save
+        </button>
+        <!-- /ko -->
+      </form>
+    </div>
+  </div>
+
+  <br />
+  <br />
+</main>
+<link
+  href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="/javascripts/clipboard-create.js"></script>
